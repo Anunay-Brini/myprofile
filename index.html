@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Anunay | Rajagiri Student Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #f9fafb;
+      background-color: #020617;
+    }
+
+    /* ---------- NAVBAR ---------- */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1rem 8vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(15,23,42,0.95), rgba(15,23,42,0.65));
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+    }
+
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #eab308;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #e5e7eb;
+      position: relative;
+      padding-bottom: 0.2rem;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #eab308, #22c55e);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* ---------- PARALLAX SECTIONS ---------- */
+    .parallax {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-attachment: fixed;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      position: relative;
+      padding: 6rem 8vw 4rem;
+    }
+
+    .parallax::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.4), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(250,204,21,0.35), transparent 55%),
+                  rgba(15,23,42,0.75);
+      mix-blend-mode: normal;
+    }
+
+    .content-wrapper {
+      position: relative;
+      max-width: 960px;
+      width: 100%;
+    }
+
+    .section-title {
+      font-size: 0.9rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #a5b4fc;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-heading {
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .section-text {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #e5e7eb;
+      max-width: 720px;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+
+    .chip {
+      font-size: 0.8rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.75);
+      backdrop-filter: blur(6px);
+      white-space: nowrap;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      background-image:
+        linear-gradient(to bottom, rgba(15,23,42,0.7), rgba(15,23,42,0.9)),
+        url("https://images.pexels.com/photos/5212337/pexels-photo-5212337.jpeg?auto=compress&cs=tinysrgb&w=1600");
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #a5b4fc;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.6rem, 4vw, 3.4rem);
+      line-height: 1.1;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-name {
+      background: linear-gradient(90deg, #fde68a, #a5b4fc, #22c55e);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: #e5e7eb;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .btn-primary,
+    .btn-outline {
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, #eab308, #22c55e);
+      color: #0f172a;
+      box-shadow: 0 12px 30px rgba(34,197,94,0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(34,197,94,0.35);
+    }
+
+    .btn-outline {
+      border-color: rgba(148,163,184,0.7);
+      background: rgba(15,23,42,0.8);
+      color: #e5e7eb;
+    }
+
+    .btn-outline:hover {
+      transform: translateY(-1px);
+      background: rgba(15,23,42,0.95);
+      border-color: #22c55e;
+    }
+
+    .hero-photo-wrap {
+      justify-self: center;
+    }
+
+    .hero-photo {
+      width: 240px;
+      height: 240px;
+      border-radius: 999px;
+      border: 3px solid rgba(248,250,252,0.9);
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(15,23,42,0.85);
+      position: relative;
+      background: radial-gradient(circle at top, #22c55e 0, #0f172a 55%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #fefce8;
+    }
+
+    .hero-photo span {
+      letter-spacing: 0.08em;
+    }
+
+    .photo-badge {
+      position: absolute;
+      bottom: 10%;
+      right: -4%;
+      background: rgba(15,23,42,0.95);
+      color: #e5e7eb;
+      padding: 0.5rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      border: 1px solid rgba(148,163,184,0.7);
+      box-shadow: 0 10px 30px rgba(15,23,42,0.8);
+    }
+
+    /* ---------- ACADEMICS ---------- */
+    #academics {
+      background-image:
+        linear-gradient(to bottom, rgba(15,23,42,0.85), rgba(15,23,42,0.95)),
+        url("https://images.pexels.com/photos/4144096/pexels-photo-4144096.jpeg?auto=compress&cs=tinysrgb&w=1600");
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.4rem;
+      margin-top: 1.6rem;
+    }
+
+    .card {
+      background: rgba(15,23,42,0.85);
+      border-radius: 1.2rem;
+      padding: 1.1rem 1.1rem 1.2rem;
+      border: 1px solid rgba(148,163,184,0.5);
+      backdrop-filter: blur(12px);
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: #fefce8;
+    }
+
+    .card-sub {
+      font-size: 0.8rem;
+      color: #a5b4fc;
+      margin-bottom: 0.3rem;
+    }
+
+    .card-detail {
+      font-size: 0.85rem;
+      color: #e5e7eb;
+      line-height: 1.5;
+    }
+
+    /* ---------- PROJECTS ---------- */
+    #projects {
+      background-image:
+        linear-gradient(to bottom, rgba(15,23,42,0.9), rgba(15,23,42,0.95)),
+        url("https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1600");
+    }
+
+    .project-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.4rem;
+      margin-top: 1.5rem;
+    }
+
+    .project {
+      background: rgba(15,23,42,0.88);
+      border: 1px solid rgba(148,163,184,0.5);
+      border-radius: 1.1rem;
+      padding: 1rem 1.1rem 1.1rem;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      gap: 0.7rem;
+    }
+
+    .project-name {
+      font-weight: 600;
+      font-size: 0.98rem;
+    }
+
+    .project-tag {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(34,197,94,0.12);
+      border: 1px solid rgba(34,197,94,0.6);
+      color: #bbf7d0;
+      white-space: nowrap;
+    }
+
+    .project-desc {
+      font-size: 0.87rem;
+      line-height: 1.5;
+      color: #e5e7eb;
+      margin-bottom: 0.6rem;
+    }
+
+    .project-meta {
+      font-size: 0.78rem;
+      color: #a5b4fc;
+    }
+
+    /* ---------- CAMPUS LIFE ---------- */
+    #campus {
+      background-image:
+        linear-gradient(to bottom, rgba(15,23,42,0.9), rgba(15,23,42,0.95)),
+        url("https://images.pexels.com/photos/256540/pexels-photo-256540.jpeg?auto=compress&cs=tinysrgb&w=1600");
+    }
+
+    .campus-flex {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 2fr);
+      gap: 2rem;
+      align-items: center;
+      margin-top: 1.4rem;
+    }
+
+    .timeline {
+      border-left: 2px solid rgba(148,163,184,0.6);
+      padding-left: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .timeline-item {
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -1.3rem;
+      top: 0.2rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34,197,94,0.25);
+    }
+
+    .timeline-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-bottom: 0.1rem;
+    }
+
+    .timeline-meta {
+      font-size: 0.78rem;
+      color: #a5b4fc;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-text {
+      font-size: 0.85rem;
+      color: #e5e7eb;
+    }
+
+    .campus-note {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: #e5e7eb;
+    }
+
+    /* ---------- CONTACT ---------- */
+    #contact {
+      background-image:
+        linear-gradient(to bottom, rgba(15,23,42,0.96), rgba(15,23,42,1)),
+        url("https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1600");
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 2fr);
+      gap: 2.2rem;
+      margin-top: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .contact-info p {
+      font-size: 0.9rem;
+      color: #e5e7eb;
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: #9ca3af;
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-value {
+      font-size: 0.95rem;
+      color: #f9fafb;
+      margin-bottom: 0.7rem;
+    }
+
+    form {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    label {
+      font-size: 0.8rem;
+      color: #d1d5db;
+      margin-bottom: 0.15rem;
+      display: block;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.55rem 0.75rem;
+      border-radius: 0.8rem;
+      border: 1px solid rgba(148,163,184,0.7);
+      background: rgba(15,23,42,0.9);
+      color: #f9fafb;
+      font-size: 0.9rem;
+      outline: none;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #22c55e;
+      box-shadow: 0 0 0 1px rgba(34,197,94,0.4);
+    }
+
+    .footer {
+      margin-top: 1.8rem;
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 900px) {
+      .hero-grid,
+      .campus-flex,
+      .contact-grid,
+      .project-list {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .navbar {
+        padding-inline: 5vw;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+
+      .card-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .parallax {
+        padding-inline: 6vw;
+      }
+
+      .hero-photo {
+        width: 200px;
+        height: 200px;
+      }
+    }
+
+    /* Mobile parallax fix */
+    @media (max-width: 768px) {
+      .parallax {
+        background-attachment: scroll;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="nav-logo">Rajagiri · Anunay</div>
+    <nav class="nav-links">
+      <a href="#hero">Home</a>
+      <a href="#academics">Academics</a>
+      <a href="#projects">Projects</a>
+      <a href="#campus">Campus Life</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO / INTRO -->
+  <section class="parallax hero" id="hero">
+    <div class="content-wrapper hero-grid">
+      <div>
+        <div class="hero-eyebrow">Rajagiri College of Social Sciences</div>
+        <h1 class="hero-title">
+          Hi, I’m <span class="hero-name">Anunay</span><br />
+          a student exploring code & data.
+        </h1>
+        <p class="hero-subtitle">
+          Rajagiri student with a passion for full-stack development and applied machine learning — building
+          useful, real-world projects that connect the classroom with industry.
+        </p>
+        <div class="chip-row">
+          <span class="chip">BCA / CS Student</span>
+          <span class="chip">Full-Stack & ML</span>
+          <span class="chip">Kochi · Kerala</span>
+        </div>
+        <div class="hero-actions">
+          <a href="#projects" class="btn-primary">View Projects ↓</a>
+          <a href="#contact" class="btn-outline">Connect with me</a>
+        </div>
+      </div>
+
+      <div class="hero-photo-wrap">
+        <!-- Replace this with your real image if you want:
+             <img src="anu.png" alt="Anunay" class="hero-photo-img"> -->
+        <div class="hero-photo">
+          <span>A</span>
+          <div class="photo-badge">
+            🎓 Rajagiri Student
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACADEMICS -->
+  <section class="parallax" id="academics">
+    <div class="content-wrapper">
+      <div class="section-title">Academics</div>
+      <h2 class="section-heading">Building strong fundamentals in computer science</h2>
+      <p class="section-text">
+        At Rajagiri, I’m focusing on core CS subjects, clean programming practices, and hands-on projects.
+        I enjoy connecting theoretical concepts with practical applications in software and machine learning.
+      </p>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-title">Program</div>
+          <div class="card-sub">Rajagiri College of Social Sciences</div>
+          <div class="card-detail">
+            Bachelor’s degree in Computer Science (student).  
+            Interest areas: algorithms, data structures, databases, and software design.
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Technical Stack</div>
+          <div class="card-detail">
+            JavaScript, Python, React, Node.js, SQL, basic cloud, and Git.  
+            Currently exploring applied machine learning & model deployment.
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Recent Focus</div>
+          <div class="card-detail">
+            🎯 ML basics (scikit-learn), building Streamlit dashboards,  
+            REST APIs with Node, and clean UI using modern frontend tools.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="parallax" id="projects">
+    <div class="content-wrapper">
+      <div class="section-title">Projects</div>
+      <h2 class="section-heading">Turning ideas into working prototypes</h2>
+      <p class="section-text">
+        I like keeping my projects simple, focused, and practical — from web apps to dashboards that use real data.
+        Each project helps me learn something new and apply it immediately.
+      </p>
+
+      <div class="project-list">
+        <article class="project">
+          <div class="project-header">
+            <div class="project-name">Campus Companion</div>
+            <span class="project-tag">Full-Stack</span>
+          </div>
+          <p class="project-desc">
+            A simple student portal concept with timetables, notes, and reminders — built as a single-page app
+            prototype using React and Firebase.
+          </p>
+          <div class="project-meta">
+            Stack: React · Firebase · Tailwind  
+            Role: UI design, authentication, and data flows
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-header">
+            <div class="project-name">ML Grade Predictor</div>
+            <span class="project-tag">Machine Learning</span>
+          </div>
+          <p class="project-desc">
+            Experimental model that predicts student performance from study time and attendance using
+            regression algorithms and visualized with Streamlit.
+          </p>
+          <div class="project-meta">
+            Stack: Python · scikit-learn · Pandas · Streamlit
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-header">
+            <div class="project-name">Mini Travel Planner</div>
+            <span class="project-tag">Frontend</span>
+          </div>
+          <p class="project-desc">
+            A clean, responsive travel landing page with smooth scrolling, cards, and animations — focused on UI/UX,
+            component layout, and reusable design.
+          </p>
+          <div class="project-meta">
+            Stack: HTML · CSS · JavaScript
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-header">
+            <div class="project-name">CodeLab Quiz</div>
+            <span class="project-tag">Interactive</span>
+          </div>
+          <p class="project-desc">
+            A browser-based quiz game for basic CS and programming concepts, designed to help friends revise before exams.
+          </p>
+          <div class="project-meta">
+            Stack: JavaScript · DOM APIs
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAMPUS LIFE -->
+  <section class="parallax" id="campus">
+    <div class="content-wrapper">
+      <div class="section-title">Campus Life</div>
+      <h2 class="section-heading">Beyond the classroom</h2>
+      <div class="campus-flex">
+        <div>
+          <p class="campus-note">
+            Life at Rajagiri is not just about lectures and labs. It’s about people, events,
+            and experiences that shape how I think and solve problems.
+          </p>
+          <p class="campus-note" style="margin-top: 0.8rem;">
+            I enjoy tech fests, project discussions with classmates, and the occasional late-night debugging sessions
+            that somehow make everything worth it.
+          </p>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-title">Tech Events & Fests</div>
+            <div class="timeline-meta">Hackathons · Coding contests</div>
+            <div class="timeline-text">
+              Participating in college tech events to sharpen problem-solving skills and get exposure to real-world challenges.
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-title">Clubs & Communities</div>
+            <div class="timeline-meta">Developer & tech circles</div>
+            <div class="timeline-text">
+              Collaborating with peers on side projects, sharing resources, and building a habit of consistent learning.
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-title">Self-Learning Sprint</div>
+            <div class="timeline-meta">Online courses & docs</div>
+            <div class="timeline-text">
+              Learning React, Node, and ML libraries from docs, YouTube, and documentation while building small yet focused projects.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="parallax" id="contact">
+    <div class="content-wrapper">
+      <div class="section-title">Contact</div>
+      <h2 class="section-heading">Let’s connect</h2>
+      <p class="section-text">
+        Open to internships, collaborations, and tech discussions.  
+        Feel free to reach out if you’d like to talk about web development, machine learning, or new ideas.
+      </p>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-label">Email</div>
+          <div class="contact-value">anunay.rajagiri@example.com</div>
+
+          <div class="contact-label">Location</div>
+          <div class="contact-value">Kochi, Kerala · India</div>
+
+          <div class="contact-label">Interests</div>
+          <p>Full-stack development, applied ML, UI/UX, and building tools that help students learn better.</p>
+
+          <div class="contact-label" style="margin-top: 1rem;">Profiles</div>
+          <p>GitHub · LinkedIn · Portfolio (links you can add later)</p>
+        </div>
+
+        <form onsubmit="event.preventDefault(); alert('Message feature is a static demo 🙂');">
+          <div>
+            <label for="name">Name</label>
+            <input id="name" type="text" placeholder="Your name" required />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="you@example.com" required />
+          </div>
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" rows="4" placeholder="Say hello or describe your idea..." required></textarea>
+          </div>
+          <button class="btn-primary" type="submit">Send Message</button>
+
+          <p class="footer">
+            © <span id="year"></span> Anunay · Rajagiri Student Profile
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Dynamic year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
