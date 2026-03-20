@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Anunay Brini | Professional Portfolio</title>
 
   <meta name="description" content="Anunay Brini — Web Developer & ML Practitioner (HTML, CSS, Python, CNN, Figma)." />
@@ -38,12 +38,13 @@
 
   <!-- ===== HEADER / NAVBAR ===== -->
   <header id="site-header" class="site-header">
-    <div class="header-inner">
+    <div class="header-inner relative">
 
       <a href="#home" class="brand">
         Anunay<span>.</span>
       </a>
 
+      <!-- Desktop Nav -->
       <nav class="nav-links">
         <a href="#home">Home</a>
         <a href="#projects">Projects</a>
@@ -51,6 +52,28 @@
         <a href="#contact">Contact</a>
       </nav>
 
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn"
+        class="md:hidden text-slate-800 p-2 ml-auto focus:outline-none flex items-center justify-center">
+        <svg id="menu-icon-open" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg id="menu-icon-close" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <!-- Mobile Menu Overlay -->
+      <div id="mobile-menu"
+        class="absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl shadow-2xl border-t border-slate-100 flex flex-col py-6 px-8 gap-6 md:hidden opacity-0 pointer-events-none transform -translate-y-4 transition-all duration-300">
+        <a href="#home" class="mobile-link text-slate-800 font-semibold text-lg border-b border-slate-100 pb-3">Home</a>
+        <a href="#projects"
+          class="mobile-link text-slate-800 font-semibold text-lg border-b border-slate-100 pb-3">Projects</a>
+        <a href="#skills"
+          class="mobile-link text-slate-800 font-semibold text-lg border-b border-slate-100 pb-3">Skills</a>
+        <a href="#contact"
+          class="mobile-link text-slate-800 font-semibold text-lg border-b border-slate-100 pb-3">Contact</a>
+      </div>
     </div>
   </header>
 
@@ -58,17 +81,17 @@
 
 
   <!-- ================= MAIN ================= -->
-  <main id="home" class="max-w-6xl mx-auto px-6 pt-32 pb-24">
+  <main id="home" class="max-w-6xl mx-auto px-5 md:px-6 pt-24 md:pt-32 pb-20 md:pb-24">
 
     <!-- ================= HERO ================= -->
-    <section class="glass p-10 md:p-14 mb-16 reveal tilt">
-      <div class="md:flex items-center gap-12">
+    <section class="glass p-6 sm:p-10 md:p-14 mb-16 reveal tilt">
+      <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12 text-center md:text-left">
         <img src="anu.png" alt="Anunay Brini"
-          class="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover ring-4 ring-white shadow-xl hero-img flex-shrink-0"
+          class="w-40 h-40 md:w-44 md:h-44 rounded-full object-cover ring-4 ring-white shadow-xl hero-img flex-shrink-0"
           onerror="this.src='https://placehold.co/400x400/f8fafc/0f172a?text=AB'">
 
-        <div class="mt-8 md:mt-0">
-          <p class="uppercase text-sm tracking-widest text-blue-600 mb-2 font-bold">
+        <div class="mt-2 md:mt-0 flex flex-col items-center md:items-start md:block">
+          <p class="uppercase text-sm tracking-widest text-blue-600 mb-2 font-bold w-full">
             Developer & Researcher
           </p>
 
@@ -76,19 +99,19 @@
             Hello, I'm <br class="md:hidden" /><span class="text-gradient">Anunay Brini</span>
           </h1>
 
-          <p class="max-w-xl text-slate-600 mb-8 leading-relaxed text-lg font-medium">
+          <p class="max-w-xl text-slate-600 mb-8 leading-relaxed text-base md:text-lg font-medium">
             Web developer and ML practitioner focused on CNNs, Python, and Figma-based UI/UX —
             building robust models and integrating them into sleek, enterprise-ready web platforms.
           </p>
 
-          <div class="flex flex-wrap gap-4">
+          <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto md:justify-start justify-center">
             <a href="#projects"
-              class="btn-primary px-8 py-3.5 rounded-xl font-semibold bg-blue-600 text-white shadow-lg shadow-blue-500/30">
+              class="btn-primary flex items-center justify-center px-8 py-3.5 rounded-xl font-semibold bg-blue-600 text-white shadow-lg shadow-blue-500/30 w-full sm:w-auto">
               View Portfolio
             </a>
 
             <a href="CV.pdf" download
-              class="btn-secondary px-8 py-3.5 rounded-xl border border-slate-300 text-slate-700 font-semibold shadow-sm backdrop-blur-sm">
+              class="btn-secondary flex items-center justify-center px-8 py-3.5 rounded-xl border border-slate-300 text-slate-700 font-semibold shadow-sm backdrop-blur-sm w-full sm:w-auto">
               Download CV
             </a>
           </div>
@@ -461,6 +484,37 @@
 
   <!-- SCRIPTS -->
   <script>
+    // Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('menu-icon-open');
+    const iconClose = document.getElementById('menu-icon-close');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    mobileBtn.addEventListener('click', () => {
+      const isClosed = mobileMenu.classList.contains('pointer-events-none');
+      if (isClosed) {
+        mobileMenu.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-4');
+        mobileMenu.classList.add('opacity-100', 'translate-y-0');
+        iconOpen.classList.add('hidden');
+        iconClose.classList.remove('hidden');
+      } else {
+        mobileMenu.classList.add('opacity-0', 'pointer-events-none', '-translate-y-4');
+        mobileMenu.classList.remove('opacity-100', 'translate-y-0');
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+      }
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('opacity-0', 'pointer-events-none', '-translate-y-4');
+        mobileMenu.classList.remove('opacity-100', 'translate-y-0');
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+      });
+    });
+
     // Intro Preloader logic
     window.addEventListener('load', () => {
       setTimeout(() => {
